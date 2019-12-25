@@ -1,0 +1,52 @@
+class Node:
+    def __init__(self,key):
+        self.data=key
+        self.left=None
+        self.right=None 
+    def inorder(self):
+        if(self.left!=None):
+            self.left.inorder()
+        print(self.data,end=" ")
+        if(self.right!=None):
+            self.right.inorder()
+    def preorder(self):
+        print(self.data,end=" ")
+        if(self.left!=None):
+            self.left.preorder()
+        if(self.right!=None):
+            self.right.preorder()
+    def postorder(self):
+        if(self.left!=None):
+            self.left.postorder()
+        if(self.right!=None):
+            self.right.postorder()
+        print(self.data,end=" ")
+    def levelorder(self):
+        queue=[]
+        queue.append(self)
+        while(len(queue)!=0):
+            print(queue[0].data,end=" ")
+            if(queue[0].left!=None):
+                queue.append(queue[0].left)
+            if(queue[0].right!=None):
+                queue.append(queue[0].right)
+            queue.pop(0) 
+            
+root=Node(1)
+root.left=Node(2)
+root.right=Node(3)
+root.left.left=Node(4)
+root.left.right=Node(5)
+root.right.left=Node(6)
+root.right.right=Node(7)
+print("inorder")
+root.inorder() 
+print("")
+print("preorder")
+root.preorder()
+print("")
+print("postorder")
+root.postorder()
+print("")
+print("levelorder")
+root.levelorder()
