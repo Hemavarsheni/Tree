@@ -23,14 +23,24 @@ class Node:
         print(self.data,end=" ")
     def levelorder(self):
         queue=[]
-        queue.append(self)
+        queue.append(self) 
+        count=1 
         while(len(queue)!=0):
-            print(queue[0].data,end=" ")
-            if(queue[0].left!=None):
-                queue.append(queue[0].left)
-            if(queue[0].right!=None):
-                queue.append(queue[0].right)
-            queue.pop(0) 
+            r=[]
+            l=[]
+            for i in range(len(queue)):
+                r.append(queue[i].data)
+                if(queue[i].left!=None):
+                    l.append(queue[i].left)
+                if(queue[i].right!=None):
+                    l.append(queue[i].right)
+            print("Level-",count)
+            print(*r)
+            queue=[]
+            queue=l 
+            if(len(l)!=0):
+                count=count+1 
+
             
 root=Node(1)
 root.left=Node(2)
