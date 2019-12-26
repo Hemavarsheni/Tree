@@ -3,15 +3,30 @@ class Node:
         self.data=key
         self.left=None
         self.right=None
-    def Number_of_nodes(self):
+    def Number_of_nodes_recursive(self):
         if(self.left!=None and self.right!=None):
-            return((self.left.Number_of_nodes()+self.right.Number_of_nodes())+1)
+            return((self.left.Number_of_nodes_recursive()+self.right.Number_of_nodes_recursive())+1)
         elif(self.left!=None and self.right==None):
-            return(self.left.Number_of_nodes()+1)
+            return(self.left.Number_of_nodes_recursive()+1)
         elif(self.right!=None and self.left==None):
-            return(self.right.Number_of_nodes()+1)
+            return(self.right.Number_of_nodes_recursive()+1)
         else:
-            return 1 
+            return 1  
+    def Number_of_nodes_iterative(self):
+        count=1 
+        l=[]
+        l.append(self)
+        while(len(l)>0):
+            t=[]
+            for i in range(len(l)):
+                if(l[i].left!=None):
+                    t.append(l[i].left)
+                if(l[i].right!=None):
+                    t.append(l[i].right)
+            if(len(t)>0):
+                count=count+len(t) 
+            l=t  
+        return count 
 
 root=Node(1)
 root.left=Node(2)
@@ -24,4 +39,5 @@ root.right.left.right.left=Node(10)
 root.left.left.left=Node(7)
 root.left.left.left.right=Node(8) 
 root.left.left.left.right.left=Node(21)
-print(root.Number_of_nodes())
+print(root.Number_of_nodes_recursive())
+print(root.Number_of_nodes_iterative())
