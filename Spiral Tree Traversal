@@ -1,0 +1,45 @@
+class Node:
+    def __init__(self,key):
+        self.data=key
+        self.left=None
+        self.right=None 
+    def spiral_order_traversal(self):
+        l1=[]
+        l2=[]
+        l1.append(self)
+        while(len(l1)>0 or len(l2)>0):
+            if(len(l2)>0):
+                l2.reverse()
+                for i in range(len(l2)):
+                    print(l2[i].data,end=" ")
+                    if(l2[i].right!=None):
+                        l1.append(l2[i].right)
+                    if(l2[i].left!=None):
+                        l1.append(l2[i].left)
+                print("")
+                l2=[] 
+                
+            if(len(l1)>0):
+                l1.reverse()
+                for i in range(len(l1)):
+                    print(l1[i].data,end=" ")
+                    if(l1[i].left!=None):
+                        l2.append(l1[i].left)
+                    if(l1[i].right!=None):
+                        l2.append(l1[i].right) 
+                print("")
+                l1=[]
+        
+root=Node(1)
+root.left=Node(2)
+root.right=Node(3)
+root.left.left=Node(4)
+root.left.right=Node(5)
+root.right.left=Node(6)
+root.right.left.right=Node(9)
+root.right.left.right.left=Node(10)
+root.left.left.left=Node(7)
+root.left.left.left.right=Node(8) 
+root.left.left.left.right.left=Node(21)
+root.left.left.left.right.right=Node(22)
+root.spiral_order_traversal()
