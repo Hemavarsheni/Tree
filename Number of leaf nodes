@@ -3,7 +3,7 @@ class Node:
         self.data=key
         self.left=None
         self.right=None 
-    def number_of_leaf_nodes(self):
+    def number_of_leaf_nodes_iterative(self):
         l=[]
         l.append(self)
         count=0 
@@ -18,7 +18,25 @@ class Node:
                     if(i.right!=None):
                         t.append(i.right) 
             l=t
-        print(count)
+        return count
+    def number_of_leaf_nodes_recursive(self):
+        count=0 
+        stack=[]
+        stack.append(self)
+        t=self
+        while(len(stack)>0):
+            if(t.left==None and t.right==None):
+                stack.pop(len(stack)-1)
+                count=count+1 
+            else:
+                i=len(stack)-1
+                if(t.right!=None):
+                    stack.append(t.right)
+                if(t.left!=None):
+                    stack.append(t.left)
+                stack.pop(i)
+                t=stack[len(stack)-1]
+        return count
 root=Node(1)
 root.left=Node(2)
 root.right=Node(3)
@@ -30,4 +48,6 @@ root.right.left.right.left=Node(10)
 root.left.left.left=Node(7)
 root.left.left.left.right=Node(8) 
 root.left.left.left.right.left=Node(21)
-root.number_of_leaf_nodes()
+root.left.left.left.right.right=Node(22)
+print(root.number_of_leaf_nodes_recursive())
+print(root.number_of_leaf_nodes_iterative())
