@@ -1,0 +1,49 @@
+class Node:
+    def __init__(self,key):
+        self.data=key
+        self.left=None
+        self.right=None 
+    def vertical_order_traversal(self):
+        d=[]
+        l=[]
+        d.append(0)
+        l.append([self.data])
+        k1=[]
+        k1.append(self)
+        k2=[]
+        k2.append(0)
+        while(len(k1)>0):
+            z1=[]
+            z2=[]
+            for i in range(len(k1)):
+                if(k1[i].left!=None):
+                    z1.append(k1[i].left)
+                    z2.append(k2[i]-1)
+                if(k1[i].right!=None):
+                    z1.append(k1[i].right)
+                    z2.append(k2[i]+1) 
+            for i in range(len(z2)):
+                if(z2[i] in d):
+                    l[d.index(z2[i])].append(z1[i].data)
+                else:
+                    l.append([z1[i].data])
+                    d.append(z2[i]) 
+            k1=z1
+            k2=z2 
+        while(len(l)!=0):
+            print(*l[d.index(min(d))])
+            l.pop(d.index(min(d)))
+            d.remove(min(d))
+                    
+root=Node(1)
+root.left=Node(2)
+root.right=Node(3)
+root.left.left=Node(4)
+root.left.right=Node(5)
+root.right.left=Node(6)
+root.right.right=Node(7)
+root.left.left.left=Node(8)
+root.left.left.right=Node(10)
+root.right.right.right=Node(9)
+root.right.right.left=Node(11)
+root.vertical_order_traversal()
