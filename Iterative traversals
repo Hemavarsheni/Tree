@@ -18,7 +18,24 @@ class Node:
                 if(queue[i].right!=None):
                     queue.append(queue[i].right)
                 t=queue[i].right 
-                queue.pop(i)
+                queue.pop(i) 
+    def preorder(self):
+        queue=[]
+        queue.append(self)
+        t=self 
+        while(len(queue)>0):
+            if(t!=None):
+                print(t.data,end=" ")
+                if(t.left!=None):
+                    queue.append(t.left)
+                t=t.left 
+            else:
+                i=len(queue)-1 
+                if(queue[i].right!=None):
+                    queue.append(queue[i].right)
+                t=queue[i].right 
+                queue.pop(i) 
+                
 root=Node(1)
 root.left=Node(2)
 root.right=Node(3)
@@ -30,3 +47,6 @@ root.right.left.right.left=Node(10)
 root.left.left.left=Node(7)
 root.left.left.left.right=Node(8)
 root.inorder()
+print("")
+root.preorder()
+print("")
