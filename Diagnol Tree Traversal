@@ -4,7 +4,7 @@ class Node:
         self.left=None
         self.right=None
         
-    def Diagnol_of_Tree(self):
+    def Diagnol_Tree_Traversal(self):
         d=[]
         l=[]
         k1=[]
@@ -50,4 +50,4 @@ root.right.right.right.right=Node(12)
 root.right.right.right.right.left=Node(13)
 root.left.left.right.left=Node(14)
 root.left.left.right.left.left=Node(15)
-root.Diagnol_of_Tree()
+root.Diagnol_Tree_Traversal()
