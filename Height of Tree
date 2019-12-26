@@ -3,15 +3,31 @@ class Node:
         self.data=key
         self.left=None
         self.right=None
-    def height_of_tree(self):
+    def height_of_tree_recursive(self):
         if(self.left!=None and self.right!=None):
-            return(max(self.left.height_of_tree(),self.right.height_of_tree())+1)
+            return(max(self.left.height_of_tree_recursive(),self.right.height_of_tree_recursive())+1)
         elif(self.left!=None and self.right==None):
-            return(self.left.height_of_tree()+1)
+            return(self.left.height_of_tree_recursive()+1)
         elif(self.right!=None and self.left==None):
-            return(self.right.height_of_tree()+1)
+            return(self.right.height_of_tree_recursive()+1)
         else:
-            return 0 
+            return 1 
+    def height_of_tree_iterative(self):
+        count=1 
+        l=[]
+        l.append(self)
+        while(len(l)>0):
+            t=[]
+            for i in range(len(l)):
+                if(l[i].left!=None):
+                    t.append(l[i].left)
+                if(l[i].right!=None):
+                    t.append(l[i].right)
+            if(len(t)>0):
+                count=count+1 
+            l=t  
+        return count 
+        
 root=Node(1)
 root.left=Node(2)
 root.right=Node(3)
@@ -23,4 +39,5 @@ root.right.left.right.left=Node(10)
 root.left.left.left=Node(7)
 root.left.left.left.right=Node(8) 
 root.left.left.left.right.left=Node(21)
-print(root.height_of_tree())
+print(root.height_of_tree_recursive())
+print(root.height_of_tree_iterative())
