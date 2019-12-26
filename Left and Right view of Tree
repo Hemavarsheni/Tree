@@ -1,0 +1,55 @@
+class Node:
+    def __init__(self,key):
+        self.data=key
+        self.left=None
+        self.right=None
+        
+    def Right_view_of_Tree(self):
+        res=[]
+        res.append(self.data)
+        l=[]
+        l.append(self)
+        while(len(l)>0):
+            t=[]
+            for i in range(len(l)):
+                if(l[i].left!=None):
+                    t.append(l[i].left)
+                if(l[i].right!=None):
+                    t.append(l[i].right)
+            if(len(t)>0):
+                res.append(t[0].data)
+            l=t  
+        print(*res)
+        
+    def Left_view_of_Tree(self):
+        res=[]
+        res.append(self.data)
+        l=[]
+        l.append(self)
+        while(len(l)>0):
+            t=[]
+            for i in range(len(l)):
+                if(l[i].left!=None):
+                    t.append(l[i].left)
+                if(l[i].right!=None):
+                    t.append(l[i].right)
+            if(len(t)>0):
+                res.append(t[len(t)-1].data)
+            l=t  
+        print(*res)
+        
+root=Node(1)
+root.left=Node(2)
+root.right=Node(3)
+root.left.left=Node(4)
+root.left.right=Node(5)
+root.right.left=Node(6)
+root.right.right=Node(7)
+root.left.left.left=Node(8)
+root.left.left.right=Node(10)
+root.right.right.right=Node(9)
+root.right.right.left=Node(11)
+root.right.right.right.right=Node(12)
+root.right.right.right.right.left=Node(13)
+root.Right_view_of_Tree()
+root.Left_view_of_Tree()
