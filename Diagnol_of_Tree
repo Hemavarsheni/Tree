@@ -1,0 +1,53 @@
+class Node:
+    def __init__(self,key):
+        self.data=key
+        self.left=None
+        self.right=None
+        
+    def Diagnol_of_Tree(self):
+        d=[]
+        l=[]
+        k1=[]
+        k2=[]
+        d.append([self.data])
+        l.append(0)
+        k1.append(0)
+        k2.append(self)
+        while(len(k1)!=0):
+            t1=[]
+            t2=[]
+            for i in range(len(k2)):
+                if(k2[i].left!=None):
+                    t1.append(k1[i]+1)
+                    t2.append(k2[i].left) 
+                if(k2[i].right!=None):
+                    t1.append(k1[i])
+                    t2.append(k2[i].right)
+            for i in range(len(t1)):
+                if(t1[i] in l):
+                    d[l.index(t1[i])].append(t2[i].data)
+                else:
+                    l.append(t1[i])
+                    d.append([t2[i].data])
+            k1=t1 
+            k2=t2
+        for i in range(len(d)):
+            print(*d[i])
+            
+root=Node(1)
+root.left=Node(2)
+root.right=Node(3)
+root.left.left=Node(4)
+root.left.right=Node(5)
+root.right.left=Node(6)
+root.right.left.left=Node(16)
+root.right.right=Node(7)
+root.left.left.left=Node(8)
+root.left.left.right=Node(10)
+root.right.right.right=Node(9)
+root.right.right.left=Node(11)
+root.right.right.right.right=Node(12)
+root.right.right.right.right.left=Node(13)
+root.left.left.right.left=Node(14)
+root.left.left.right.left.left=Node(15)
+root.Diagnol_of_Tree()
