@@ -20,7 +20,6 @@ class Node:
             l=t
         return count
     def number_of_leaf_nodes_recursive(self):
-        def number_of_leaf_nodes_recursive(self):
         if(self.left==None and self.right==None):
             return 1 
         else:
