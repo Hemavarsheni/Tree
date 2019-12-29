@@ -6,31 +6,24 @@ class Node:
     def finding_leaf_nodes_iterative(self):
         queue=[] 
         queue.append(self)
-        node=queue[0]
-        while(node!=None):
-            if(node.left==None and node.right==None):
-                print(node.data,end=" ")
+        while(len(queue)>0):
+            if(queue[0].left==None and queue[0].right==None):
+                print(queue[0].data,end=" ")
             else:
-                if(node.left!=None):
-                    queue.append(node.left)
-                if(node.right!=None):
-                    queue.append(node.right)
+                if(queue[0].left!=None):
+                    queue.append(queue[0].left)
+                if(queue[0].right!=None):
+                    queue.append(queue[0].right)
             queue.pop(0)
-            if(len(queue)!=0):
-                node=queue[0]
-            else:
-                node=None
+            
     def finding_leaf_nodes_recursive(self):
-        if(self!=None):
-            if(self.left==None and self.right==None):
+        if(self.left==None and self.right==None):
                 print(self.data,end=" ")
-            elif(self.left!=None and self.right!=None):
-                self.left.number_of_leaf_nodes_recursive()
-                self.right.number_of_leaf_nodes_recursive()
-            elif(self.left!=None):
-                self.left.number_of_leaf_nodes_recursive()
-            elif(self.right!=None):
-                self.right.number_of_leaf_nodes_recursive() 
+        else:
+            if(self.left!=None):
+                self.left.finding_leaf_nodes_recursive()
+            if(self.right!=None):
+                self.right.finding_leaf_nodes_recursive()
 root=Node(1)
 root.left=Node(2)
 root.right=Node(3)
@@ -43,5 +36,6 @@ root.left.left.left=Node(7)
 root.left.left.left.right=Node(8) 
 root.left.left.left.right.left=Node(21)
 root.left.left.left.right.right=Node(22)
-root.finding_leaf_nodes_recursive()
 root.finding_leaf_nodes_iterative()
+print("")
+root.finding_leaf_nodes_recursive()
