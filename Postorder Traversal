@@ -7,18 +7,20 @@ class Node:
     def Postorder_traversal_iterative(self):
         stack1=[]
         stack2=[]
-        stack1.append(self)
-        while(len(stack1)>0 or len(stack2)>0):
+        top=self
+        while(top!=None):
+            stack2.append(top)
+            if(top.left!=None):
+                stack1.append(top.left)
+            if(top.right!=None):
+                stack1.append(top.right)
             if(len(stack1)>0):
                 top=stack1.pop()
-                stack2.append(top)
-                if(top.left!=None):
-                    stack1.append(top.left)
-                if(top.right!=None):
-                    stack1.append(top.right)
             else:
-                top=stack2.pop()
-                print(top.data,end=" ")
+                top=None
+        while(len(stack2)>0):
+            top=stack2.pop()
+            print(top.data,end=" ")
                 
     def Postorder_traversal_recursive(self):
         if(self.left!=None):
