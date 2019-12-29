@@ -13,19 +13,16 @@ class Node:
         else:
             return 1  
     def Number_of_nodes_iterative(self):
-        count=1 
-        l=[]
-        l.append(self)
-        while(len(l)>0):
-            t=[]
-            for i in range(len(l)):
-                if(l[i].left!=None):
-                    t.append(l[i].left)
-                if(l[i].right!=None):
-                    t.append(l[i].right)
-            if(len(t)>0):
-                count=count+len(t) 
-            l=t  
+        count=0 
+        queue=[]
+        queue.append(self)
+        while(len(queue)>0):
+            count=count+1 
+            if(queue[0].left!=None):
+                queue.append(queue[0].left)
+            if(queue[0].right!=None):
+                queue.append(queue[0].right)
+            queue.pop(0)
         return count 
 
 root=Node(1)
