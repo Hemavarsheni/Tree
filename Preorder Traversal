@@ -1,0 +1,39 @@
+class Node:
+    def __init__(self,key):
+        self.data=key
+        self.left=None
+        self.right=None
+        
+    def Preorder_traversal_iterative(self):
+        stack=[]
+        top=self
+        while(len(stack)>0 or top!=None):
+            if(top!=None):
+                print(top.data,end=" ")
+                stack.append(top)
+                top=top.left
+            else:
+                top=stack.pop()
+                top=top.right
+                
+    def Preorder_traversal_recursive(self):
+        print(self.data,end=" ") 
+        if(self.left!=None):
+            self.left.Preorder_traversal_recursive()
+        if(self.right!=None):
+            self.right.Preorder_traversal_recursive()
+            
+root=Node(1)
+root.left=Node(2)
+root.right=Node(3)
+root.left.left=Node(4)
+root.left.right=Node(5)
+root.right.left=Node(6)
+root.right.left.right=Node(9)
+root.right.left.right.left=Node(10)
+root.left.left.left=Node(7)
+root.left.left.left.right=Node(8) 
+root.left.left.left.right.left=Node(21)
+root.Preorder_traversal_iterative()
+print("")
+root.Preorder_traversal_recursive()
